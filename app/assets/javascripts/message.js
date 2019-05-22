@@ -1,6 +1,9 @@
 $(function() {
   function buildHTML(message){
-    
+  var insertImage = '';
+  if (message.image_url) {
+    insertImage = `<img src="${message.image_url}">`;
+  }
   var html = `<div class="message">
               <div class="upper-message">
                 <div class="upper-message__user-name">
@@ -14,7 +17,7 @@ $(function() {
                 <p class="lower-message__content">
                   ${message.content}
                 </p>
-                ${message.image}
+                ${insertImage}
               </div>
             </div>`;
   return html
@@ -36,11 +39,12 @@ $(function() {
     var html = buildHTML(data);
     $('.form__submit').prop('disabled', false);
     $('.messages').append(html);
+    $('.messages').animate({scrollTop: 1000}, 500, 'swing');
     $('.form__message').val('');
     $('.hidden').val('');
   })
   .fail(function(){
-    alert('error');
+    alert('error').fadeOut("slow");
   })
  });
 });

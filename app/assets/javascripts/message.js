@@ -1,4 +1,5 @@
-$(function() {
+// $(function() {
+  $(document).on('turbolinks:load', function() {
   function buildHTML(message){
   // var insertImage = '';
   // if (message.image) {
@@ -49,3 +50,4 @@ $(function() {
  });
 //  $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
 });
+// });

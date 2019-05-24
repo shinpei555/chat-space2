@@ -28,6 +28,8 @@ $(document).on('turbolinks:load', function() {
                </div>`
     menberList.append(html);
  }
+
+
     // インクリメンタルサーチ
     $('#user-search-field').on('keyup', function() {
       var input = $('#user-search-field').val();
@@ -55,7 +57,7 @@ $(document).on('turbolinks:load', function() {
         alert('ユーザー検索に失敗しました');
         });
     });
-    
+    // ユーザー追加
     $(document).on("click", ".user-search-add", function () {
       $(this).parent().detach();
       var userName = $('.user-search-add').attr('data-user-name');
@@ -63,6 +65,8 @@ $(document).on('turbolinks:load', function() {
       var html = appendMembers(userName, userId);
       $('#user-add-result').append(html);
     });
-  
-
+    // ユーザー削除
+    $(document).on("click", ".user-search-remove", function(){
+      $(this).parent().remove();
+    });
 });

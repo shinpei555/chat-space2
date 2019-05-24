@@ -38,14 +38,13 @@ $(document).on('turbolinks:load', function() {
         url: '/users',
         data: { keyword: input },
         dataType: 'json',
-        // processData: false,
-        // contentType: false
       })
       
       .done(function(users) {
+        
         $('#user-search-result').empty();
         if (users.length !== 0) {
-          users.forEach(function(user){
+          users.forEach(function( user ){
             appendUserToSearchList(user);
           });
         }
@@ -59,11 +58,11 @@ $(document).on('turbolinks:load', function() {
     });
     // ユーザー追加
     $(document).on("click", ".user-search-add", function () {
-      $(this).parent().detach();
-      var userName = $('.user-search-add').attr('data-user-name');
-      var userId = $('.user-search-add').attr('data-user-id');
-      var html = appendMembers(userName, userId);
-      $('#user-add-result').append(html);
+      
+      var userName = $(this).attr('data-user-name');
+      var userId = $(this).attr('data-user-id');
+      $(this).parent().remove();
+      appendMembers(userName, userId);
     });
     // ユーザー削除
     $(document).on("click", ".user-search-remove", function(){

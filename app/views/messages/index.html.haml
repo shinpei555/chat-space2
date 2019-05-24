@@ -4,15 +4,10 @@
     .header
       .left-header
         .left-header__title
-          グループ
+          グループ名を書き換え
         %ul.left-header__members
-          Member：
-          %li.member
-            メンバー
-          %li.member
-            メンバー名
-          %li.member
-            メンバー名
+          - @members.each do |member|
+            = member.name
       .right-header
         .right-header__button
           = link_to "edit", edit_group_path(@group)

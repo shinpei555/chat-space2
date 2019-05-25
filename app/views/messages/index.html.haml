@@ -4,7 +4,7 @@
     .header
       .left-header
         .left-header__title
-          グループ名を書き換え
+          = @group.name
         %ul.left-header__members
           - @members.each do |member|
             = member.name

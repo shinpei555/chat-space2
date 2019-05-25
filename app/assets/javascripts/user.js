@@ -1,7 +1,7 @@
 // $(function() {
 $(document).on('turbolinks:load', function() {
   var searchList = $ ('#user-search-result');
-  var menberList = $ ('#user-add-result');
+  var menberList = $ ('#chat-group-users');
   function appendUserToSearchList(user) {
     var html = 
              `<div class="chat-group-user clearfix">
@@ -63,6 +63,8 @@ $(document).on('turbolinks:load', function() {
       var userId = $(this).attr('data-user-id');
       $(this).parent().remove();
       appendMembers(userName, userId);
+      
+      
     });
     // ユーザー削除
     $(document).on("click", ".user-search-remove", function(){

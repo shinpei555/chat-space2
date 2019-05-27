@@ -8,5 +8,3 @@ class Api::MessagesController < ApplicationController
     end
   end
 end
-
-# && @messages.group_id == @group.id

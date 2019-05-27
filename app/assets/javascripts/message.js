@@ -59,7 +59,6 @@
       data: {id: last_message_id}
     })
     .done(function(messages) {
-      console.log(messages);
       var insertHTML = '';
       messages.forEach(function(message) {
         insertHTML = insertHTML + buildHTML(message);
@@ -68,7 +67,7 @@
       })
     })
     .fail(function() {
-      alert('えらん');s
+      alert('エラー');
     });
   };
   if (location.pathname.match(/\/groups\/\d+\/messages/)) {

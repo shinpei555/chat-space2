@@ -2,7 +2,7 @@
   $(document).on('turbolinks:load', function() {
   function buildHTML(message){
   var insertImage = message.image ? `<img src="${message.image}">` : '';
-  var html = `<div class="message">
+  var html = `<div class="message" data-id= ${message.id} >
               <div class="upper-message">
                 <div class="upper-message__user-name">
                   ${message.name}
@@ -45,11 +45,9 @@
   })
  });
 
-  $(function(){
-    setInterval(reloadMessages, 5000);
-  //5000ミリ秒ごとにreloadMessagesという関数を実行する
-  });
+  
   var reloadMessages = function() {
+    // console.log('こここ');
     var last_message_id = $('.message:last').data('id');
     $.ajax({
       //ルーティングで設定した通りのURLを指定
@@ -61,17 +59,20 @@
       data: {id: last_message_id}
     })
     .done(function(messages) {
+      console.log(messages);
       var insertHTML = '';
       messages.forEach(function(message) {
-        insertHTML = buildHTML(message);
-        $('.message').append(insertHTML);
-        
+        insertHTML = insertHTML + buildHTML(message);
+        $('.messages').append(insertHTML);
+        $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
       })
     })
     .fail(function() {
-      alert('error').fadeOut("slow");
+      alert('えらん');s
     });
   };
-
-
+  if (location.pathname.match(/\/groups\/\d+\/messages/)) {
+    setInterval(reloadMessages, 5000);
+  };
+  
 });

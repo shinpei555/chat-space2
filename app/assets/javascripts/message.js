@@ -1,10 +1,6 @@
 // $(function() {
   $(document).on('turbolinks:load', function() {
   function buildHTML(message){
-  // var insertImage = '';
-  // if (message.image) {
-  //   insertImage = `<img src="${message.image}">`;
-  // }
   var insertImage = message.image ? `<img src="${message.image}">` : '';
   var html = `<div class="message">
               <div class="upper-message">
@@ -48,6 +44,34 @@
     alert('error').fadeOut("slow");
   })
  });
-//  $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast');
+
+  $(function(){
+    setInterval(reloadMessages, 5000);
+  //5000ミリ秒ごとにreloadMessagesという関数を実行する
+  });
+  var reloadMessages = function() {
+    var last_message_id = $('.message:last').data('id');
+    $.ajax({
+      //ルーティングで設定した通りのURLを指定
+      url: './api/messages',
+      //ルーティングで設定した通りhttpメソッドをgetに指定
+      type: 'get',
+      dataType: 'json',
+      //dataオプションでリクエストに値を含める
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      var insertHTML = '';
+      messages.forEach(function(message) {
+        insertHTML = buildHTML(message);
+        $('.message').append(insertHTML);
+        
+      })
+    })
+    .fail(function() {
+      alert('error').fadeOut("slow");
+    });
+  };
+
+
 });
-// });

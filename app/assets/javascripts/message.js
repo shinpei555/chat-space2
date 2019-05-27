@@ -47,7 +47,6 @@
 
   
   var reloadMessages = function() {
-    // console.log('こここ');
     var last_message_id = $('.message:last').data('id');
     $.ajax({
       //ルーティングで設定した通りのURLを指定

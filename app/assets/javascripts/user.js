@@ -58,7 +58,6 @@ $(document).on('turbolinks:load', function() {
     });
     // ユーザー追加
     $(document).on("click", ".user-search-add", function () {
-      
       var userName = $(this).attr('data-user-name');
       var userId = $(this).attr('data-user-id');
       $(this).parent().remove();

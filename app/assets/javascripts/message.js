@@ -1,5 +1,5 @@
-$(function() {
-  // $(document).on('turbolinks:load', function() {
+// $(function() {
+$(document).on('turbolinks:load', function() {
     function buildHTML(message){
     var insertImage = message.image ? `<img src="${message.image}">` : '';
     var html = `<div class="message" data-id= ${message.id} >
@@ -47,6 +47,7 @@ $(function() {
   
     
     var reloadMessages = function() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)) {
       var last_message_id = $('.message:last').data('id');
       $.ajax({
         //ルーティングで設定した通りのURLを指定
@@ -68,9 +69,10 @@ $(function() {
       .fail(function() {
         alert('エラー');
       });
+      };
     };
-    if (location.pathname.match(/\/groups\/\d+\/messages/)) {
-      setInterval(reloadMessages, 5000);
-    };
+    
+    setInterval(reloadMessages, 5000);
+    
     
   });

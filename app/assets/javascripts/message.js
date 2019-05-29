@@ -2,7 +2,7 @@
 $(document).on('turbolinks:load', function() {
     function buildHTML(message){
     var insertImage = message.image ? `<img src="${message.image}">` : '';
-    var html =  '<div class="message" data-id= ${message.id} >
+    var html =  `<div class="message" data-id= ${message.id} >
                 <div class="upper-message">
                   <div class="upper-message__user-name">
                     ${message.name}
@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function() {
                   </p>
                     ${insertImage}
                 </div>
-              </div>;
+              </div>;`
     return html
     }
     $('#new_message').on('submit', function(e) {
